@@ -1,8 +1,11 @@
 // 引入 Mock
 import MockJs from 'mockjs'
 
-import user from './user'
-
-user.forEach(item => {
-  MockJs.mock(item.url, item.type, item.response)
+// 自动化导入模拟api
+const files = require.context('./modules', false, /\.js$/)
+files.keys().forEach(key => {
+  let file = files(key).default || files(key)
+  file.forEach(item => {
+    MockJs.mock(item.url, item.type, item.response)
+  })
 })
