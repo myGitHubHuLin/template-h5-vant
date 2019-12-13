@@ -2,14 +2,15 @@ import axios from 'axios'
 import { Toast } from 'vant'
 // import store from '@/store'
 import { getToken } from '@/utils/auth'
+import configSite from '_conf'
 
 // create an axios instance
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
-
+service.baseURL = process.env.VUE_APP_API_PREFIX // .env中配置的api前缀
+console.log(service.baseURL)
 /**
  * 请求拦截器
  * 每次请求前，如果存在token则在请求头中携带token

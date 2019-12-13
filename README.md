@@ -10,7 +10,8 @@
 6. 支持网站标题动态设置
 7. axios 封装
 8. cdn 配置加载
-9. 内置微信公众号 sdk
+9. 支持多环境模式
+10. 内置微信公众号 sdk
 
 ### 安装
 
@@ -19,6 +20,16 @@ git clone git@gitee.com:null_639_5368/vue-vant-base.git
 或者
 
 下载 zip
+
+### 运行
+
+yarn 或者 npm install
+
+yarn run dev:mock  模拟数据模式
+
+yarn run dev 默认开发模式
+
+yarn run build 生产模式
 
 ### 目录结构
 
@@ -42,6 +53,9 @@ git clone git@gitee.com:null_639_5368/vue-vant-base.git
   - App.vue
   - main.js
 - .browserslistrc
+- .env.development 默认开发模式
+- .env.mock 模拟数据模式
+- .env.production // 生产模式
 - .eslintrc.js
 - .gitignore
 - babel.config.js
@@ -49,5 +63,3 @@ git clone git@gitee.com:null_639_5368/vue-vant-base.git
 - jest.config.js
 - vue.config.js vuecli 打包配置
 - package.json
-
-
