@@ -12,6 +12,14 @@
 8. cdn 配置加载
 9. 内置微信公众号 sdk
 
+### 安装
+
+git clone git@gitee.com:null_639_5368/vue-vant-base.git
+
+或者
+
+下载 zip
+
 ### 目录结构
 
 - config 站点配置目录（cdn、网站标题）
@@ -42,10 +50,4 @@
 - vue.config.js vuecli 打包配置
 - package.json
 
-### 安装
 
-git clone
-
-或者
-
-下载 zip
