@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p style="margin:10px;text-align: center;">
+    <p style="text-align: center;">
       v-vant-base
     </p>
     <p style="margin:10px;text-align: center;">

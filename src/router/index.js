@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 // layout
 import Main from '@/views/main/Main.vue'
 // pages
+const page404 = () => import('@/views/404.vue')
 const Home = () => import('@/views/main/Home.vue')
 const PersonCenter = () => import('@/views/main/PersonCenter.vue')
 const Other = () => import('@/views/main/Other.vue')
@@ -57,6 +58,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue')
+  },
+  {
+    path: '*',
+    name: 'page404',
+    meta: {
+      title: '页面未找到'
+    },
+    component: page404
   }
 ]
 
