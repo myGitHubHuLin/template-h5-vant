@@ -10,6 +10,7 @@ import {
 import * as $userApi from '@/api/user'
 import { getUserInfo } from '../../utils/auth'
 
+// mutations-types
 const SET_TOKEN = 'SET_TOKEN' // 登录
 const SET_USER_INFO = 'SET_USER_INFO' // 获取用户信息
 const LOGOUT = 'LOGOUT' // 退出登录、清除用户数据
@@ -39,26 +40,22 @@ export default {
   },
   actions: {
     async login({ commit }, data) {
-      try {
-        let resultLogin = await $userApi.login(data)
-        let resultInfo = await $userApi.info()
-        commit(SET_TOKEN, resultLogin.token)
-        commit(SET_USER_INFO, resultInfo)
-        Toast({
-          message: '登录成功',
-          position: 'middle',
-          duration: 1500,
-          onClose() {
-            router.replace('/')
-          }
-        })
-      } catch (error) {
-        Toast({
-          message: error || '登录失败',
-          position: 'middle',
-          duration: 1500
-        })
-      }
+      return new Promise(async (reslove, reject) => {
+        try {
+          let resultLogin = await $userApi.login(data)
+          let resultInfo = await $userApi.info()
+          commit(SET_TOKEN, resultLogin.token)
+          commit(SET_USER_INFO, resultInfo)
+          reslove()
+        } catch (error) {
+          Toast({
+            message: error || '登录失败',
+            position: 'middle',
+            duration: 1500
+          })
+          reject(error)
+        }
+      })
     },
     logout({ commit }) {
       commit(LOGOUT)
