@@ -11,7 +11,7 @@ const externals = {}
 
 module.exports = {
   lintOnSave: false, // eslint检测 按需开启
-  publicPath: './',
+  publicPath: './', // 资源全局路径前缀
   assetsDir: 'assets', //静态资源目录(js,css,img,fonts)这些文件都可以写里面
   // 打包时不生成.map文件
   productionSourceMap: false,
