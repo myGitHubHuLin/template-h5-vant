@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Toast } from 'vant'
 // import store from '@/store'
 import { getToken } from '@/utils/auth'
-import configSite from '_conf'
+// import configSite from '_conf' // 站点配置
 
 // create an axios instance
 const service = axios.create({
@@ -28,7 +28,6 @@ service.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
 service.interceptors.response.use(
   response => {
     const res = response.data

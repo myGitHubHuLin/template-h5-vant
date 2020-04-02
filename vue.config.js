@@ -1,7 +1,7 @@
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin') // gzip压缩
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, dir)
 }
 // 网站配置
@@ -10,7 +10,7 @@ const configSite = require('./config')
 const externals = {}
 
 module.exports = {
-  lintOnSave: false, // eslint检测 按需开启
+  lintOnSave: true, // eslint检测 按需开启
   publicPath: './', // 资源全局路径前缀
   assetsDir: 'assets', //静态资源目录(js,css,img,fonts)这些文件都可以写里面
   // 打包时不生成.map文件
@@ -40,7 +40,7 @@ module.exports = {
       }
     }
   },
-  configureWebpack () {
+  configureWebpack() {
     let configNew = {}
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
@@ -59,7 +59,7 @@ module.exports = {
     }
     return configNew
   },
-  chainWebpack (config) {
+  chainWebpack(config) {
     // 移除资源预加载(路由懒加载才能正常使用)
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test

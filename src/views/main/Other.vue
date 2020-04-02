@@ -1,32 +1,30 @@
 <template>
-  <div>
-    jssdk测试
-  </div>
+  <div>jssdk测试</div>
 </template>
 
 <script>
-import wx from '@/utils/jssdkUtils'
+import wx from "@/utils/jssdkUtils";
 export default {
   props: {},
   data() {
-    return {}
+    return {};
   },
   computed: {},
   created() {},
   mounted() {
     wx.ready(function() {
       wx.checkJsApi({
-        jsApiList: ['checkJsApi', 'openLocation'],
+        jsApiList: ["checkJsApi", "openLocation"],
         success: function(res) {
-          // console.log(res)
+          console.log(res);
         }
-      })
-    })
+      });
+    });
   },
   watch: {},
   methods: {},
   components: {}
-}
+};
 </script>
 
 <style scoped lang="scss"></style>

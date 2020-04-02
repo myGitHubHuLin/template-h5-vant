@@ -7,4 +7,4 @@ wx.config({
   signature: 'a980b028132b7e939cee975b9375b0fc8548f8e4', // 必填，签名
   jsApiList: ['chooseImage'] // 必填，需要使用的JS接口列表
 })
-export default wx
+export default wx;
