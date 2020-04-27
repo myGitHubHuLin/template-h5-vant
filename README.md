@@ -39,33 +39,78 @@ yarn run build 生产模式
 
 ### 目录结构
 
-- config 站点配置目录（cdn、网站标题）
-- mock 模拟数据
-- public 静态资源文件夹
-- src 源代码
-  - api 接口目录
-  - assets 资源目录
-    - css 全局样式
-    - font 字体
-    - js 全局 js
-    - images 图片
-  - components 全局组件
-  - icons
-    - svg svg 图片文件夹
-  - router 路由配置
-  - store vuex 配置
-  - utils 工具库
-  - views 页面
-  - App.vue
-  - main.js
-- .browserslistrc
-- .env.development 默认开发模式
-- .env.mock 模拟数据模式
-- .env.production // 生产模式
-- .eslintrc.js
-- .gitignore
-- babel.config.js
-- package.json
-- jest.config.js
-- vue.config.js vuecli 打包配置
-- package.json
+```
+|-- vue-vant-base
+    |-- .browserslistrc
+    |-- .env.development
+    |-- .env.mock
+    |-- .env.production
+    |-- .eslintignore
+    |-- .eslintrc.js
+    |-- .gitignore
+    |-- babel.config.js
+    |-- jest.config.js
+    |-- LICENSE
+    |-- package.json
+    |-- README.md
+    |-- vue.config.js
+    |-- yarn.lock
+    |-- config
+    |   |-- cdn.js
+    |   |-- index.js
+    |-- mock
+    |   |-- index.js
+    |   |-- modules
+    |       |-- user.js
+    |-- public
+    |   |-- favicon.ico
+    |   |-- index.html
+    |-- src
+    |   |-- App.vue
+    |   |-- main.js
+    |   |-- api
+    |   |   |-- user.js
+    |   |-- assets
+    |   |   |-- logo.png
+    |   |   |-- css
+    |   |   |   |-- common.scss
+    |   |   |   |-- reset.css
+    |   |   |-- font
+    |   |   |-- js
+    |   |       |-- rem.js
+    |   |-- components
+    |   |   |-- SvgIcon.vue
+    |   |   |-- Layout
+    |   |       |-- FooterBar.vue
+    |   |-- icons
+    |   |   |-- index.js
+    |   |   |-- svg
+    |   |       |-- 404.svg
+    |   |-- router
+    |   |   |-- index.js
+    |   |   |-- routes.js
+    |   |-- store
+    |   |   |-- index.js
+    |   |   |-- modules
+    |   |       |-- user.js
+    |   |-- utils
+    |   |   |-- auth.js
+    |   |   |-- components.js
+    |   |   |-- index.js
+    |   |   |-- jssdk.js
+    |   |   |-- jssdkUtils.js
+    |   |   |-- permission.js
+    |   |   |-- request.js
+    |   |   |-- validate.js
+    |   |-- views
+    |       |-- 404.vue
+    |       |-- Login.vue
+    |       |-- main
+    |           |-- Home.vue
+    |           |-- Main.vue
+    |           |-- Other.vue
+    |           |-- PersonCenter.vue
+    |-- tests
+        |-- unit
+            |-- example.spec.js
+```
