@@ -1,7 +1,7 @@
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin') // gzip压缩
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, dir)
 }
 // 网站配置
@@ -23,13 +23,15 @@ module.exports = {
     host: '0.0.0.0',
     // 设置默认端口
     port: 8088,
+    // 禁用host验证
+    disableHostCheck: true,
     // 设置代理
     proxy: {
       '/api': {
         // 目标 API 地址
         // 开发环境
-        target: 'http://192.168.4.111:8888',
-
+        target: 'http://127.0.0.1:7001/api',
+        // target: 'http://wxapitest1.free.idcfengye.com/api',
         // 如果要代理 websockets
         ws: false,
         // 将主机标头的原点更改为目标URL(设置跨域)
@@ -40,7 +42,7 @@ module.exports = {
       }
     }
   },
-  configureWebpack() {
+  configureWebpack () {
     let configNew = {}
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
@@ -59,7 +61,7 @@ module.exports = {
     }
     return configNew
   },
-  chainWebpack(config) {
+  chainWebpack (config) {
     // 移除资源预加载(路由懒加载才能正常使用)
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test

@@ -1,4 +1,4 @@
-import { Toast } from 'vant'
+// import { Toast } from 'vant'
 import router from '@/router'
 import {
   getToken,
@@ -22,15 +22,15 @@ export default {
     user: getUserInfo() || {}
   },
   mutations: {
-    [SET_TOKEN](state, data) {
+    [SET_TOKEN] (state, data) {
       state.token = data
       setToken(data)
     },
-    [SET_USER_INFO](state, userData = {}) {
+    [SET_USER_INFO] (state, userData = {}) {
       state.user = userData
       setUserInfo(userData)
     },
-    [LOGOUT](state) {
+    [LOGOUT] (state) {
       state.user = {}
       state.token = null
       removeToken()
@@ -39,7 +39,7 @@ export default {
     }
   },
   actions: {
-    async login({ commit }, data) {
+    async login ({ commit }, data) {
       return new Promise(async (reslove, reject) => {
         try {
           let resultLogin = await $userApi.login(data)
@@ -48,24 +48,24 @@ export default {
           commit(SET_USER_INFO, resultInfo)
           reslove()
         } catch (error) {
-          Toast({
-            message: error || '登录失败',
-            position: 'middle',
-            duration: 1500
-          })
+          // Toast({
+          //   message: error || '登录失败',
+          //   position: 'middle',
+          //   duration: 1500
+          // })
           reject(error)
         }
       })
     },
-    logout({ commit }) {
+    logout ({ commit }) {
       commit(LOGOUT)
     }
   },
   getters: {
-    token(state) {
+    token (state) {
       return state.token
     },
-    user(state) {
+    user (state) {
       return state.user
     }
   }

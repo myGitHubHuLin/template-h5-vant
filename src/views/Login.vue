@@ -76,7 +76,7 @@ export default {
           }
         })
       } catch (error) {
-        console.log('登录界面', error)
+        // console.log('登录界面', error)
       }
     }
   },

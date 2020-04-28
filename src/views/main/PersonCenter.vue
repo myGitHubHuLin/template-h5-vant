@@ -1,6 +1,6 @@
 <template>
   <div>个人中心
-    <router-link to="/other">跳转其他页面</router-link>
+
   </div>
 </template>
 

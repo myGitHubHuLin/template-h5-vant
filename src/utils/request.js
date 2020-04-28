@@ -7,10 +7,10 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
+  baseURL: process.env.VUE_APP_API_PREFIX, // .env中配置的api前缀
   timeout: 5000 // request timeout
 })
-service.baseURL = process.env.VUE_APP_API_PREFIX // .env中配置的api前缀
-console.log(service.baseURL)
+console.log(process.env.VUE_APP_API_PREFIX)
 /**
  * 请求拦截器
  * 每次请求前，如果存在token则在请求头中携带token
@@ -42,7 +42,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log('err ' + error) // for debug
     Toast.fail({
       message: error.message,
       duration: 1.5 * 1000

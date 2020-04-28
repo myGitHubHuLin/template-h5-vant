@@ -24,11 +24,10 @@ Vue.use(Button)
 // 注册自定义全局组件
 import './utils/components'
 
-if (process.env.VUE_APP_MODE == 'mock') {
-  // 开发模式启动mock
-  console.log('开发模式启动mock')
-  require('../mock')
-}
+// 开发模式启动mock
+console.log('开发模式启动mock')
+require('../mock')
+
 // 打印当前运行模式
 console.log('当前运行模式为:', process.env)
 

@@ -5,7 +5,7 @@ import Main from '@/views/main/Main.vue'
 const page404 = () => import('@/views/404.vue')
 const Home = () => import('@/views/main/Home.vue')
 const PersonCenter = () => import('@/views/main/PersonCenter.vue')
-const Other = () => import('@/views/main/Other.vue')
+const WxTest = () => import('@/views/main/WxTest.vue')
 
 // 注意
 // meta: {
@@ -35,12 +35,13 @@ const routes = [
                 component: PersonCenter
             },
             {
-                path: 'other',
-                name: 'other',
+                path: 'WxTest',
+                name: 'WxTest',
                 meta: {
-                    title: '其他页面'
+                    title: '微信jssdk测试',
+                    isOpen: true
                 },
-                component: Other
+                component: WxTest
             }
         ]
     },

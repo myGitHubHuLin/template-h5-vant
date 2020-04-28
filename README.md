@@ -41,25 +41,25 @@ yarn run build 生产模式
 
 ```
 |-- vue-vant-base
-    |-- .browserslistrc
-    |-- .env.development
-    |-- .env.mock
-    |-- .env.production
-    |-- .eslintignore
-    |-- .eslintrc.js
-    |-- .gitignore
-    |-- babel.config.js
-    |-- jest.config.js
-    |-- LICENSE
-    |-- package.json
-    |-- README.md
-    |-- vue.config.js
-    |-- yarn.lock
-    |-- config
-    |   |-- cdn.js
-    |   |-- index.js
+    |-- .browserslistrc  浏览器兼容
+    |-- .env.development 开发环境变量
+    |-- .env.mock        mock环境变量
+    |-- .env.production  生产环境变量
+    |-- .eslintignore    忽略eslint配置
+    |-- .eslintrc.js     eslint配置
+    |-- .gitignore       git忽略
+    |-- babel.config.js  babel配置文件
+    |-- jest.config.js   test配置
+    |-- LICENSE       
+    |-- package.json     
+    |-- README.md         
+    |-- vue.config.js    vue-cli配置
+    |-- yarn.lock        yarn版本锁
+    |-- config           公共配置
+    |   |-- cdn.js       cdn配置
+    |   |-- index.js     站点配置
     |-- mock
-    |   |-- index.js
+    |   |-- index.js     
     |   |-- modules
     |       |-- user.js
     |-- public
@@ -68,17 +68,17 @@ yarn run build 生产模式
     |-- src
     |   |-- App.vue
     |   |-- main.js
-    |   |-- api
+    |   |-- api          api目录
     |   |   |-- user.js
-    |   |-- assets
+    |   |-- assets       资源文件
     |   |   |-- logo.png
     |   |   |-- css
     |   |   |   |-- common.scss
-    |   |   |   |-- reset.css
+    |   |   |   |-- reset.css   
     |   |   |-- font
     |   |   |-- js
-    |   |       |-- rem.js
-    |   |-- components
+    |   |       |-- rem.js      移动端rem适配js
+    |   |-- components          公共组件
     |   |   |-- SvgIcon.vue
     |   |   |-- Layout
     |   |       |-- FooterBar.vue
@@ -94,15 +94,14 @@ yarn run build 生产模式
     |   |   |-- modules
     |   |       |-- user.js
     |   |-- utils
-    |   |   |-- auth.js
-    |   |   |-- components.js
-    |   |   |-- index.js
-    |   |   |-- jssdk.js
-    |   |   |-- jssdkUtils.js
-    |   |   |-- permission.js
-    |   |   |-- request.js
-    |   |   |-- validate.js
-    |   |-- views
+    |   |   |-- auth.js         本地权限存储封装
+    |   |   |-- components.js   全局组件注册
+    |   |   |-- index.js        常用工具
+    |   |   |-- jssdk.js        jssdk commonjs
+    |   |   |-- permission.js   路由权限拦截
+    |   |   |-- request.js      http请求封装
+    |   |   |-- validate.js     
+    |   |-- views               页面目录
     |       |-- 404.vue
     |       |-- Login.vue
     |       |-- main
