@@ -1,3 +1,7 @@
+/**
+ * axios 封装
+ * @author maybe
+ */
 import axios from 'axios'
 import { Toast } from 'vant'
 // import store from '@/store'

@@ -1,24 +1,28 @@
 <template>
   <div>
+    <header-bar :title="$route.meta.title"
+                v-if="!$route.meta.hideHeader">
+    </header-bar>
     <router-view></router-view>
-    <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
-import FooterBar from '@/components/Layout/FooterBar'
+import HeaderBar from '@/components/Layout/HeaderBar'
 export default {
   props: {},
-  data() {
+  data () {
     return {}
   },
   computed: {},
-  created() {},
-  mounted() {},
+  created () {
+
+  },
+  mounted () { },
   watch: {},
   methods: {},
   components: {
-    FooterBar
+    HeaderBar
   }
 }
 </script>

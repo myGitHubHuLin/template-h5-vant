@@ -27,7 +27,12 @@
     <div class="theme">scss全局变量颜色</div>
     <!-- <router-link to="/other">跳转其他页面</router-link> -->
     <van-count-down :time="time" />
-    <router-link to="/WxTest">测试jssdk</router-link>
+    <div>
+      <router-link :to="{name:'WxTest'}">测试jssdk</router-link>
+    </div>
+    <div>
+      <router-link :to="{name:'ListDemo'}">列表 demo</router-link>
+    </div>
   </div>
 </template>
 
@@ -56,6 +61,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
+  line-height: 80px;
   text-align: center;
 }
 .logo {
