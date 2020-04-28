@@ -104,11 +104,16 @@ yarn run build 生产模式
     |   |-- views               页面目录
     |       |-- 404.vue
     |       |-- Login.vue
-    |       |-- main
+    |       |-- components
+    |       |   |-- BottomView
+    |       |   |   |-- Index.vue
+    |       |   |-- HeaderView
+    |       |       |-- Index.vue
+    |       |-- pages
     |           |-- Home.vue
-    |           |-- Main.vue
-    |           |-- Other.vue
+    |           |-- ListDemo.vue
     |           |-- PersonCenter.vue
+    |           |-- WxTest.vue
     |-- tests
         |-- unit
             |-- example.spec.js
