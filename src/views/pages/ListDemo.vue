@@ -1,10 +1,10 @@
 <template>
   <van-pull-refresh v-model="refreshing"
-                    @refresh="onRefresh">
+                    @refresh="_onRefresh">
     <van-list v-model="loading"
               :finished="finished"
               finished-text="没有更多了"
-              @load="_getList">
+              @load="_onLoad">
       <van-cell v-for="item in list"
                 :key="item"
                 :title="item" />
@@ -38,36 +38,40 @@ export default {
 
   },
   methods: {
-    async _getList () {
+    async _onLoad () {
       // 异步更新数据
       console.log('页码：', this.page)
       // 将 loading 设置为 true，表示处于加载状态
       this.loading = true;
       await new Promise((res, rej) => {
-        // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-        setTimeout(() => {
-          for (let i = 0; i < 10; i++) {
-            this.list.push(this.list.length + 1);
-          }
-          // 加载状态结束
-          this.loading = false;
+        try {
+          // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+          setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+              this.list.push(this.list.length + 1);
+            }
+            // 加载状态结束
+            this.loading = false;
 
-          // 页码+1
-          this.page++;
-          // 数据全部加载完成
-          if (this.list.length >= 40) {
-            this.finished = true;
-          }
-          res()
-        }, 1000);
+            // 页码+1
+            this.page++;
+            // 数据全部加载完成
+            if (this.list.length >= 40) {
+              this.finished = true;
+            }
+            res()
+          }, 1000);
+        } catch (error) {
+          rej(error)
+        }
       })
     },
-    async onRefresh () {
+    async _onRefresh () {
       // 清空列表数据
       this.resetPageData()
       // 重新加载数据
       this.refreshing = true;
-      await this._getList();
+      await this._onLoad();
       this.refreshing = false;
     }
   },

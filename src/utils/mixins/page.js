@@ -24,8 +24,22 @@ export default {
       this.size = size;
       this.list.length = 0;
     },
-    async _getList () {
+    /**
+     * 上拉加载
+     */
+    async _onLoad () {
       // 请求列表数据
+    },
+    /**
+     * 下拉刷新
+     */
+    async _onRefresh () {
+      // 清空列表数据
+      this.resetPageData()
+      // 重新加载数据
+      this.refreshing = true;
+      await this._getList();
+      this.refreshing = false;
     }
   }
 }
