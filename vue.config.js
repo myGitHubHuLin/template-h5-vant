@@ -7,7 +7,9 @@ function resolve (dir) {
 // 网站配置
 const configSite = require('./config')
 // cdn 别名设置
-const externals = {}
+const externals = {
+
+}
 
 module.exports = {
   lintOnSave: true, // eslint检测 按需开启
@@ -69,6 +71,7 @@ module.exports = {
     config.plugin('html').tap(args => {
       args[0].cdn = require('./config/cdn')
       args[0].title = configSite.title
+      args[0].inject = false  // 关闭自动注入资源文件
       return args
     })
     // 为CND设置导出模块名称

@@ -33,6 +33,9 @@
     <div>
       <router-link :to="{name:'ListDemo'}">列表 demo</router-link>
     </div>
+    <div>
+      <router-link :to="{name:'MapDemo'}">地图 demo</router-link>
+    </div>
   </div>
 </template>
 
