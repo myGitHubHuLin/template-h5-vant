@@ -25,8 +25,11 @@ Vue.use(Button)
 import './utils/components'
 
 // 开发模式启动mock
-console.log('开发模式启动mock')
-require('../mock')
+// console.log('开发模式启动mock')
+if (process.env != 'production') {
+  require('../mock')
+  console.log('本地mock数据已导入')
+}
 
 // 打印当前运行模式
 console.log('当前运行模式为:', process.env)
