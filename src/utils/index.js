@@ -35,7 +35,7 @@ export const removeStore = name => {
  * @param {*} time
  */
 export const submitTimeOut = (fn, time = 1000) => {
-  setTimeout(function() {
+  setTimeout(function () {
     fn()
   }, time)
 }
@@ -86,7 +86,7 @@ export const deepClone = obj => {
  */
 export const throttle = (fn, interval = 300) => {
   let canRun = true
-  return function() {
+  return function () {
     if (!canRun) return
     canRun = false
     setTimeout(() => {
@@ -103,7 +103,7 @@ export const throttle = (fn, interval = 300) => {
  **/
 export const debounce = (func, wait, immediate) => {
   let timer
-  return function() {
+  return function () {
     let context = this
     let args = arguments
 
@@ -115,7 +115,7 @@ export const debounce = (func, wait, immediate) => {
       }, wait)
       if (callNow) func.apply(context, args)
     } else {
-      timer = setTimeout(function() {
+      timer = setTimeout(function () {
         func.apply(context, args)
       }, wait)
     }

@@ -4,4 +4,18 @@
   </div>
 </template>
 
-<style lang="scss"></style>
+<script>
+// import inobounce from '@/utils/inobounce'
+export default {
+  created () {
+
+  },
+  mounted () {
+    // inobounce.enable();
+  }
+}
+</script>
+
+<style  lang="scss">
+</style>
+

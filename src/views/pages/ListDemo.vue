@@ -1,15 +1,19 @@
 <template>
-  <van-pull-refresh v-model="refreshing"
-                    @refresh="_onRefresh">
-    <van-list v-model="loading"
-              :finished="finished"
-              finished-text="没有更多了"
-              @load="_onLoad">
-      <van-cell v-for="item in list"
-                :key="item"
-                :title="item" />
-    </van-list>
-  </van-pull-refresh>
+  <div>
+    <van-pull-refresh v-model="refreshing"
+                      @refresh="_onRefresh">
+      <van-list v-model="loading"
+                :finished="finished"
+                finished-text="没有更多了"
+                @load="_onLoad">
+        <van-cell v-for="item in list"
+                  :key="item"
+                  :title="item" />
+      </van-list>
+    </van-pull-refresh>
+
+  </div>
+
 </template>
 
 <script>
@@ -32,7 +36,6 @@ export default {
 
   },
   mounted () {
-
   },
   watch: {
 
