@@ -36,10 +36,6 @@
     <div>
       <router-link :to="{name:'MapDemo'}">高德地图 demo</router-link>
     </div>
-    <div>
-      <p>下面这个按钮会根据设置的主题自动变色</p>
-      <van-button type="default">默认按钮</van-button>
-    </div>
   </div>
 </template>
 
