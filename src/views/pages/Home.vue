@@ -36,6 +36,10 @@
     <div>
       <router-link :to="{name:'MapDemo'}">地图 demo</router-link>
     </div>
+    <div>
+      <p>下面这个按钮会根据设置的主题自动变色</p>
+      <van-button type="default">默认按钮</van-button>
+    </div>
   </div>
 </template>
 
@@ -52,7 +56,8 @@ export default {
   },
   data () {
     return {
-      time: 30 * 60 * 60 * 1000
+      time: 30 * 60 * 60 * 1000,
+      value: 50,
     };
   },
   methods: {
@@ -66,6 +71,7 @@ export default {
 .home {
   line-height: 80px;
   text-align: center;
+  padding: 5px 10px;
 }
 .logo {
   width: 200px;

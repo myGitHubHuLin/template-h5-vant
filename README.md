@@ -18,6 +18,7 @@
 10. 内置微信公众号 sdk
 11. 支持vant组件库的按需加载
 12. 支持svg雪碧图
+13. 支持定制化vant主题样式
 
 ### 安装
 
@@ -29,13 +30,13 @@ git clone git@gitee.com:null_639_5368/vue-vant-base.git
 
 ### 运行
 
-yarn 或者 npm install
+npm install 或者 yarn
 
-yarn run dev:mock  模拟数据模式
+npm run dev:mock  模拟数据模式
 
-yarn run dev 默认开发模式
+npm run dev 默认开发模式
 
-yarn run build 生产模式
+npm run build 生产模式
 
 ### 目录结构
 
@@ -75,6 +76,7 @@ yarn run build 生产模式
     |   |   |-- css
     |   |   |   |-- common.scss
     |   |   |   |-- reset.css   
+    |   |   |   |-- themeVar.less   vant主题变量
     |   |   |-- font
     |   |   |-- js
     |   |       |-- rem.js      移动端rem适配js

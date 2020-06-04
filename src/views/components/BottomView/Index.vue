@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bottom-view-wrapper">
     <router-view></router-view>
     <footer-bar></footer-bar>
   </div>
@@ -23,4 +23,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.bottom-view-wrapper {
+  padding-bottom: 50px;
+}
+</style>

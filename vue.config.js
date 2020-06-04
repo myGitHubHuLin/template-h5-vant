@@ -100,6 +100,17 @@ module.exports = {
   },
   css: {
     loaderOptions: {
+      less: {
+        lessOptions: {
+          modifyVars: {
+            // 直接覆盖变量
+            // 'text-color': '#111',
+            // 'border-color': '#eee',
+            // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+            hack: `true; @import "@/assets/css/themeVar.less";`,
+          },
+        },
+      },
       sass: {
         // 配置scss 全局样式文件 支持全局变量
         prependData: `
@@ -115,7 +126,7 @@ module.exports = {
             //propWhiteList: [],  //默认值是一个空数组，这意味着禁用白名单并启用所有属性。
             // propBlackList: [], //黑名单
             exclude: /(node_module)/, //默认false，可以（reg）利用正则表达式排除某些文件夹的方法，例如/(node_module)/ 。如果想把前端UI框架内的px也转换成rem，请把此属性设为默认值
-            // selectorBlackList: [], //要忽略并保留为px的选择器
+            selectorBlackList: ['.bottom-view-wrapper'], //要忽略并保留为px的选择器
             // ignoreIdentifier: false,  //（boolean/string）忽略单个属性的方法，启用ignoreidentifier后，replace将自动设置为true。
             // replace: true, // （布尔值）替换包含REM的规则，而不是添加回退。
             mediaQuery: false, //（布尔值）允许在媒体查询中转换px。
