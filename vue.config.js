@@ -13,7 +13,7 @@ const externals = {
 
 module.exports = {
   lintOnSave: true, // eslint检测 按需开启
-  publicPath: './', // 资源全局路径前缀
+  publicPath: '/vue-vant-base', // 资源全局路径前缀 由于作者需要发布码云演示这里设置/vue-vant-base,无特殊需要设置成./
   assetsDir: 'assets', //静态资源目录(js,css,img,fonts)这些文件都可以写里面
   // 打包时不生成.map文件
   productionSourceMap: false,
