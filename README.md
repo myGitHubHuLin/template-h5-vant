@@ -28,6 +28,10 @@ git clone git@gitee.com:null_639_5368/vue-vant-base.git
 
 下载 zip
 
+### 演示
+
+http://null_639_5368.gitee.io/vue-vant-base
+
 ### 运行
 
 npm install 或者 yarn
