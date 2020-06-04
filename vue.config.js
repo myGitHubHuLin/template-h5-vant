@@ -1,15 +1,14 @@
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin') // gzip压缩
+const WebpackCdnPlugin = require('webpack-cdn-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
 // 网站配置
 const configSite = require('./config')
-// cdn 别名设置
-const externals = {
-
-}
+// CDN配置
+const cdnConfig = require('./config/cdn.js')
 
 module.exports = {
   lintOnSave: true, // eslint检测 按需开启
@@ -45,12 +44,17 @@ module.exports = {
     }
   },
   configureWebpack () {
-    let configNew = {}
+    let configNew = {
+      plugins: [
+        // CDN导入
+        new WebpackCdnPlugin(cdnConfig)
+      ]
+    }
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
       console.log('\n---生产环境---\n')
       console.log(`gzip压缩(需要nginx开启gzip)`)
-      configNew.plugins = [
+      configNew.plugins.push(
         new CompressionPlugin({
           // filename: "[path].gz[query]",
           // algorithm: "gzip",
@@ -59,7 +63,7 @@ module.exports = {
           minRatio: 0.8,
           deleteOriginalAssets: false
         })
-      ]
+      )
     }
     return configNew
   },
@@ -68,14 +72,14 @@ module.exports = {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
     // 配置CDN
-    config.plugin('html').tap(args => {
-      args[0].cdn = require('./config/cdn')
-      args[0].title = configSite.title
-      args[0].inject = false  // 关闭自动注入资源文件
-      return args
-    })
+    // config.plugin('html').tap(args => {
+    //   args[0].cdn = require('./config/cdn')
+    //   args[0].title = configSite.title
+    //   args[0].inject = true  // 是否自动注入资源文件
+    //   return args
+    // })
     // 为CND设置导出模块名称
-    config.externals(externals)
+    // config.externals(externals)
     // 设置别名
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
