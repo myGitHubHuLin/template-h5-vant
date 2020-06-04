@@ -8,8 +8,8 @@ import store from './store'
 import '@/assets/css/reset.css'
 // 移动端rem适配js
 import '@/assets/js/rem.js'
-// 导入vant css
-// import 'vant/lib/index.css'
+// 导入vant css(由于采用CDN导入这里无需导入)
+// import 'vant/lib/index.css' 
 // 路由权限拦截
 import './utils/permission'
 // 初始化svg雪碧图
