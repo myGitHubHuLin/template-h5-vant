@@ -35,7 +35,7 @@ export default {
       state.token = null
       removeToken()
       removeUserInfo()
-      router.push('/login')
+      router.replace('/login')
     }
   },
   actions: {
