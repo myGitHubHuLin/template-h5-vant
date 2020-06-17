@@ -20,8 +20,12 @@
 
   <script>
 // NPM 方式
-import { AMapManager } from 'vue-amap';
-
+import VueAMap, { AMapManager } from 'vue-amap';
+VueAMap.initAMapApiLoader({
+  key: '599dfe6bbe92b35d34d4e3d3f40aac6b',
+  plugin: ['AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType'],
+  v: '1.4.15'
+});
 export default {
   props: {
     mId: {

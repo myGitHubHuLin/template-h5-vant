@@ -20,11 +20,11 @@ module.exports = {
       var: 'Vuex',
       path: 'dist/vuex.min.js'
     },
-    {
-      name: 'vue-amap',
-      var: 'VueAMap',
-      path: 'dist/index.js'
-    },
+    // {
+    //   name: 'vue-amap',
+    //   var: 'VueAMap',
+    //   path: 'dist/index.js'
+    // },
     {
       name: 'vant',
       var: 'vant',

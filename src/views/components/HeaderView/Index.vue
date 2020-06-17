@@ -31,6 +31,5 @@ export default {
 
 <style scoped lang="scss">
 .content {
-  min-height: calc(100vh - 92px);
 }
 </style>
