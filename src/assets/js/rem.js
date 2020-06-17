@@ -12,7 +12,8 @@ function setRem () {
     // adjust body font size
     function setBodyFontSize () {
       if (document.body) {
-        document.body.style.fontSize = 12 * dpr + 'px'
+        // document.body.style.fontSize = 12 * dpr + 'px'
+        document.body.style.fontSize = '16px' // 自定义body字体大小
       } else {
         document.addEventListener('DOMContentLoaded', setBodyFontSize)
       }

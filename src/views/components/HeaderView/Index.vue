@@ -3,7 +3,9 @@
     <header-bar :title="$route.meta.title"
                 v-if="!$route.meta.hideHeader">
     </header-bar>
-    <router-view></router-view>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -27,4 +29,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.content {
+  min-height: calc(100vh - 92px);
+}
+</style>

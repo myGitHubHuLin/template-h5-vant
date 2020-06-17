@@ -46,7 +46,7 @@ module.exports = {
   configureWebpack () {
     let configNew = {
       plugins: [
-        // CDN导入
+        // CDN导入, 如果不需要cdn加速，注释下面代码就可以
         new WebpackCdnPlugin(cdnConfig)
       ]
     }

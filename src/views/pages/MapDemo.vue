@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <m-map></m-map>
-  </div>
+  <m-map mId="m1"
+         style="height:500px;"></m-map>
 </template>
 
 <script>
@@ -22,7 +21,6 @@ export default {
 
   },
   mounted () {
-
   },
   watch: {
 

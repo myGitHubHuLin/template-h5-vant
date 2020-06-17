@@ -1,6 +1,6 @@
 <template>
   <div class="amap-page-container">
-    <el-amap ref="map"
+    <el-amap :ref="mId"
              vid="amapDemo"
              :amap-manager="amapManager"
              :center="center"
@@ -23,6 +23,12 @@
 import { AMapManager } from 'vue-amap';
 
 export default {
+  props: {
+    mId: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       amapManager: null,
@@ -31,7 +37,7 @@ export default {
       events: {
         init: (o) => {
           console.log(o.getCenter())
-          console.log(this.$refs.map.$$getInstance())
+          console.log(this.$refs[this.mId].$$getInstance())
           o.getCity(result => {
             console.log(result)
           })
@@ -70,6 +76,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .amap-demo {
-  height: calc(100vh - 92px);
+  height: 100%;
 }
 </style>

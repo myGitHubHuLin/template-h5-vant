@@ -3,6 +3,7 @@
  * @listens https://github.com/shirotech/webpack-cdn-plugin
  */
 module.exports = {
+  prodUrl: '//unpkg.com/:name@:version/:path', // 按需自定义CDN服务器
   modules: [
     {
       name: 'vue',
