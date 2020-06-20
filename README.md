@@ -4,6 +4,10 @@
 
 目前架构还在测试、开发阶段。
 
+目前全力开发 typescript 的版本，js 的版本滞后更新。
+
+typescript 版本：https://gitee.com/null_639_5368/vue-typescript-vant-base
+
 ### 功能介绍
 
 1. 支持 px 自动转 rem 并且忽略 node_modules 下三方包
@@ -16,8 +20,8 @@
 8. cdn 配置加载
 9. 支持多环境模式
 10. 内置微信公众号 sdk
-11. 支持vant组件库的按需加载
-12. 支持svg雪碧图
+11. 支持 vant 组件库的按需加载
+12. 支持 svg 雪碧图
 
 ### 安装
 
@@ -35,7 +39,7 @@ http://null_639_5368.gitee.io/vue-vant-base
 
 npm install 或者 yarn
 
-npm run dev:mock  模拟数据模式
+npm run dev:mock 模拟数据模式
 
 npm run dev 默认开发模式
 
@@ -54,16 +58,16 @@ npm run build 生产模式
     |-- .gitignore       git忽略
     |-- babel.config.js  babel配置文件
     |-- jest.config.js   test配置
-    |-- LICENSE       
-    |-- package.json     
-    |-- README.md         
+    |-- LICENSE
+    |-- package.json
+    |-- README.md
     |-- vue.config.js    vue-cli配置
     |-- yarn.lock        yarn版本锁
     |-- config           公共配置
     |   |-- cdn.js       cdn配置
     |   |-- index.js     站点配置
     |-- mock
-    |   |-- index.js     
+    |   |-- index.js
     |   |-- modules
     |       |-- user.js
     |-- public
@@ -78,7 +82,7 @@ npm run build 生产模式
     |   |   |-- logo.png
     |   |   |-- css
     |   |   |   |-- common.scss
-    |   |   |   |-- reset.css   
+    |   |   |   |-- reset.css
     |   |   |   |-- themeVar.less   vant主题变量
     |   |   |-- font
     |   |   |-- js
@@ -105,7 +109,7 @@ npm run build 生产模式
     |   |   |-- jssdk.js        jssdk commonjs
     |   |   |-- permission.js   路由权限拦截
     |   |   |-- request.js      http请求封装
-    |   |   |-- validate.js     
+    |   |   |-- validate.js
     |   |-- views               页面目录
     |       |-- 404.vue
     |       |-- Login.vue

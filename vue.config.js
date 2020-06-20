@@ -6,7 +6,7 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 // 网站配置
-const configSite = require('./config')
+// const configSite = require('./config')
 // CDN配置
 const cdnConfig = require('./config/cdn.js')
 
