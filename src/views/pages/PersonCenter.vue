@@ -1,22 +1,20 @@
 <template>
-  <div>个人中心
-
-  </div>
+  <div>个人中心</div>
 </template>
 
 <script>
 export default {
   props: {},
-  data () {
-    return {}
+  data() {
+    return {};
   },
   computed: {},
-  created () { },
-  mounted () { },
+  created() {},
+  mounted() {},
   watch: {},
   methods: {},
   components: {}
-}
+};
 </script>
 
 <style scoped lang="scss"></style>

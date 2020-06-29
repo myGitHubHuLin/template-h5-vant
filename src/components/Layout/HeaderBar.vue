@@ -1,52 +1,41 @@
 <template>
   <div class="layout-header-bar">
-    <van-nav-bar :title="title"
-                 left-text="返回"
-                 right-text="按钮"
-                 left-arrow
-                 @click-left="onClickLeft"
-                 @click-right="onClickRight" />
+    <van-nav-bar :title="title" left-text="返回" left-arrow @click-left="onClickLeft">
+      <template #right>
+        <slot name="right"></slot>
+      </template>
+    </van-nav-bar>
   </div>
 </template>
-
 <script>
-import { NavBar } from 'vant';
+import { NavBar } from "vant";
 export default {
+  name: "header-bar",
   props: {
     title: {
       type: String,
-      default: '标题'
+      default: "标题"
     }
   },
-  data () {
-    return {
-
-    };
+  data() {
+    return {};
   },
-  computed: {
-
-  },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  watch: {
-
-  },
+  computed: {},
+  created() {},
+  mounted() {},
+  watch: {},
   methods: {
-    onClickLeft () {
+    onClickLeft() {
       // this.$toast('返回');
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
-    onClickRight () {
-      this.$toast('按钮');
-    },
+    onClickRight() {
+      this.$toast("按钮");
+    }
   },
   components: {
     [NavBar.name]: NavBar
-  },
+  }
 };
 </script>
 
