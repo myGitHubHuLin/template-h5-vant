@@ -58,7 +58,7 @@ module.exports = {
       // },
       plugins: [
         // CDN导入, 如果不需要cdn加速，注释下面代码就可以
-        // new WebpackCdnPlugin(cdnConfig), // 由于作者全部代码部署到自己单独的CDN服务器注释掉cdn插件
+        new WebpackCdnPlugin(cdnConfig),
       ],
     };
     if (process.env.NODE_ENV === "production") {
