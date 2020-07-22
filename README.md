@@ -10,15 +10,15 @@ typescript 版本：https://gitee.com/null_639_5368/vue-typescript-vant-base
 
 ### 功能介绍
 
-1. 支持 px 自动转 rem 并且忽略 node_modules 下三方包
-2. 常用目录别名设置
-3. 支持 scss 全局样式、变量、函数......
-4. 支持 gzip 压缩
-5. 支持本地 mock 模拟数据
-6. 支持网站标题动态设置
-7. axios 封装
-8. cdn 配置加载
-9. 支持多环境模式
+01. 支持 px 自动转 vw(rem暂时废弃) 并且忽略 node_modules 下三方包
+02. 常用目录别名设置
+03. 支持 scss 全局样式、变量、函数......
+04. 支持 gzip 压缩
+05. 支持本地 mock 模拟数据
+06. 支持网站标题动态设置
+07. axios 封装
+08. cdn 配置加载
+09. 支持多环境模式
 10. 内置微信公众号 sdk
 11. 支持 vant 组件库的按需加载
 12. 支持 svg 雪碧图
@@ -47,7 +47,7 @@ npm run build 生产模式
 
 ### 目录结构
 
-```
+``` 
 |-- vue-vant-base
     |-- .browserslistrc  浏览器兼容
     |-- .env.development 开发环境变量
@@ -98,6 +98,7 @@ npm run build 生产模式
     |   |-- router
     |   |   |-- index.js
     |   |   |-- routes.js
+    |   |   |-- permission.js   路由权限拦截
     |   |-- store
     |   |   |-- index.js
     |   |   |-- modules
@@ -107,7 +108,6 @@ npm run build 生产模式
     |   |   |-- components.js   全局组件注册
     |   |   |-- index.js        常用工具
     |   |   |-- jssdk.js        jssdk commonjs
-    |   |   |-- permission.js   路由权限拦截
     |   |   |-- request.js      http请求封装
     |   |   |-- validate.js
     |   |-- views               页面目录

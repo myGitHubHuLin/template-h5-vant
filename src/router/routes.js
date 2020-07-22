@@ -1,16 +1,17 @@
-
 // routes
-import routes from './modules'
+import routes from "./modules";
 // layout
-import BottomBar from '@/views/components/BottomView/Index.vue'
-import HeaderBar from '@/views/components/HeaderView/Index.vue'
+import BottomBar from "@/views/components/BottomView/Index.vue";
+import HeaderBar from "@/views/components/HeaderView/Index.vue";
 
 // common
-const page404 = () => import('@/views/404.vue')
+const page404 = () => import("@/views/404.vue");
+const WxLogin = () => import("@/views/WxLogin.vue");
 
-// pages
-const Home = () => import('@/views/pages/Home.vue')
-const PersonCenter = () => import('@/views/pages/PersonCenter.vue')
+// BottomBar
+const Home = () => import("@/views/pages/Home.vue");
+const PersonCenter = () => import("@/views/pages/PersonCenter.vue");
+const MapDemo = () => import("@/views/pages/MapDemo.vue");
 
 // 注意
 // meta: {
@@ -18,57 +19,75 @@ const PersonCenter = () => import('@/views/pages/PersonCenter.vue')
 // }
 const routesArr = [
     {
-        path: '/',
-        name: 'main',
-        redirect: '/home',
+        path: "*",
+        name: "page404",
+        meta: {
+            title: "页面未找到",
+            isOpen: true,
+        },
+        component: page404,
+    },
+    {
+        path: "/",
+        name: "main",
+        redirect: "/home",
         component: BottomBar,
         children: [
             {
-                path: 'home',
-                name: 'home',
+                path: "home",
+                name: "home",
                 meta: {
-                    title: '主页'
+                    title: "主页",
                 },
-                component: Home
+                component: Home,
             },
             {
-                path: 'PersonCenter',
-                name: 'PersonCenter',
+                path: "MapDemo",
+                name: "MapDemo",
                 meta: {
-                    title: '个人中心'
+                    title: "地图",
+                    isOpen: true,
                 },
-                component: PersonCenter
-            }
-        ]
+                component: MapDemo,
+            },
+            {
+                path: "PersonCenter",
+                name: "PersonCenter",
+                meta: {
+                    title: "个人中心",
+                },
+                component: PersonCenter,
+            },
+        ],
     },
     {
-        path: '/login',
-        name: 'login',
+        path: "/login",
+        name: "login",
         meta: {
-            title: '登录',
-            isOpen: true
+            title: "登录",
+            isOpen: true,
         },
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue')
+        component: () =>
+            import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
     },
     {
-        path: '*',
-        name: 'page404',
+        path: "/WxLogin",
+        name: "WxLogin",
         meta: {
-            title: '页面未找到'
+            title: "微信登录",
+            isOpen: true,
         },
-        component: page404
+        component: WxLogin,
     },
     {
-        path: '/',
-        name: 'page',
-        redirect: '/home',
+        path: "/",
+        name: "page",
+        redirect: "/home",
         component: HeaderBar,
-        children: [
-            ...routes
-        ]
-    }
-]
+        children: [...routes],
+    },
+];
 export default routesArr;

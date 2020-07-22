@@ -39,10 +39,11 @@ service.interceptors.response.use(
     if (res.code !== 200) {
       // 处理自定义错误
       handleError(res.code)
-      return Promise.reject(new Error(res.message || 'Error'))
+
+      return Promise.reject(new Error(res.msg || 'Error'))
     } else {
       // success
-      return Promise.resolve(res.data)
+      return Promise.resolve(res)
     }
   },
   error => {

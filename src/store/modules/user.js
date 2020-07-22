@@ -22,15 +22,15 @@ export default {
     user: getUserInfo() || {}
   },
   mutations: {
-    [SET_TOKEN] (state, data) {
+    [SET_TOKEN](state, data) {
       state.token = data
       setToken(data)
     },
-    [SET_USER_INFO] (state, userData = {}) {
+    [SET_USER_INFO](state, userData = {}) {
       state.user = userData
       setUserInfo(userData)
     },
-    [LOGOUT] (state) {
+    [LOGOUT](state) {
       state.user = {}
       state.token = null
       removeToken()
@@ -39,13 +39,13 @@ export default {
     }
   },
   actions: {
-    async login ({ commit }, data) {
+    async login({ commit }, data) {
       return new Promise(async (reslove, reject) => {
         try {
           let resultLogin = await $userApi.login(data)
           let resultInfo = await $userApi.info()
-          commit(SET_TOKEN, resultLogin.token)
-          commit(SET_USER_INFO, resultInfo)
+          commit(SET_TOKEN, resultLogin.data.token)
+          commit(SET_USER_INFO, resultInfo.data)
           reslove()
         } catch (error) {
           // Toast({
@@ -57,15 +57,15 @@ export default {
         }
       })
     },
-    logout ({ commit }) {
+    logout({ commit }) {
       commit(LOGOUT)
     }
   },
   getters: {
-    token (state) {
+    token(state) {
       return state.token
     },
-    user (state) {
+    user(state) {
       return state.user
     }
   }

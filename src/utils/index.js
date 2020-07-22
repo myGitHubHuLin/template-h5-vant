@@ -143,3 +143,16 @@ export const tranNumber = (num, point) => {
     return parseFloat(parseInt(num / 10000) + '.' + decimal) + '万'
   }
 }
+/**
+ * 数组插入到formdata
+ * @description 该方法会改变原formdata
+ * @param {FormData} formData 源formdata
+ * @param {string} key 数组key值
+ * @param {Array} arr 数组
+ */
+export const formatArrToFormData = (formData, key, arr) => {
+  arr.forEach((file, index) => {
+    formData.append(`${key}[${index}]`, file);
+    // console.log(formData.get(`${key}[${index}]`));
+  });
+};

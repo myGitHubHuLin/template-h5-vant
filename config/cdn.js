@@ -29,7 +29,7 @@ module.exports = {
       name: "vant",
       var: "vant",
       path: "lib/vant.min.js",
-      style: "lib/index.css",
+      // style: "lib/index.css", // 由于需要自定义主题，这里注释CDN全局导入样式
     },
   ],
 };
