@@ -6,7 +6,7 @@
 
 目前全力开发 typescript 的版本，js 的版本滞后更新。
 
-typescript 版本：https://gitee.com/null_639_5368/vue-typescript-vant-base
+typescript 版本：查看typescript分支
 
 ### 功能介绍
 
