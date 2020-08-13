@@ -5,9 +5,18 @@
         <van-icon name="search" size="18" />
       </template>
     </header-bar>
-    <van-search v-model="search.text" placeholder="请输入搜索关键词" @search="searchSubmit" />
+    <van-search
+      v-model="search.obj.a"
+      placeholder="请输入搜索关键词"
+      @search="searchSubmit"
+    />
     <van-pull-refresh v-model="refreshing" @refresh="_onRefresh">
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="_onLoad">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="_onLoad"
+      >
         <van-cell v-for="item in list" :key="item.id" :title="item.title" />
       </van-list>
     </van-pull-refresh>
@@ -24,14 +33,14 @@ export default {
   data() {
     return {
       list: [],
-      search: { text: "" }
+      search: { text: "", obj: { a: 1 } },
     };
   },
   components: {
     [List.name]: List,
     [Cell.name]: Cell,
     [PullRefresh.name]: PullRefresh,
-    [Search.name]: Search
+    [Search.name]: Search,
   },
   mounted() {
     console.log(this.$route.query);
@@ -50,7 +59,7 @@ export default {
           params = {
             page: 1,
             size: 10,
-            search: {}
+            search: {},
           };
         }
         console.log(params);
@@ -64,7 +73,7 @@ export default {
             arr.push({
               id: i,
               title: "【新增" + i + "】 标题",
-              content: "搜索对象为" + JSON.stringify(params.search)
+              content: "搜索对象为" + JSON.stringify(params.search),
             });
           }
           res({
@@ -73,8 +82,8 @@ export default {
               page: params.page,
               size: params.size,
               list: arr,
-              total: 50 // 设置50就加载完成
-            }
+              total: 30, // 设置30就加载完成
+            },
           });
         }, 500);
       });
@@ -85,15 +94,14 @@ export default {
       const result = await this.getData({
         page: this.page, // 传入页码
         size: this.size, // 传入每页条数
-        search: this.search // 传入搜索的对象
+        search: this.search, // 传入搜索的对象
       });
       this.total = result.data.total;
-      result.data.list.map(item => {
+      result.data.list.map((item) => {
         this.list.push(item);
       });
-    }
-  }
+    },
+  },
 };
 </script>
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -1,28 +1,29 @@
-
 import { deepClone } from "@/utils/index";
+
+// 提供给混合初始化搜索对象
+let tempSearch = {};
 
 export default {
   data() {
     return {
-      loading: false,    // 是否加载中
+      loading: false, // 是否加载中
       refreshing: false, // 是否刷新中
       finished: false, // 是否加载完成
-      page: 0,  // 页码
+      page: 0, // 页码
       size: 10, // 条数
       total: 0, // 总数
-      list: [],  // 数据源 
+      list: [], // 数据源
       search: {}, // 搜索对象
-      tempSearch: {} // 提供给混合初始化搜索对象
-    }
+    };
+  },
+  created() {
+    // 拷贝搜索初始化对象属性和数据
+    tempSearch = deepClone(this.search);
   },
   methods: {
-    create() {
-      // 拷贝搜索初始化对象属性和数据
-      this.tempSearch = deepClone(this.search);
-    },
     // 重置搜索
     _resetSearch() {
-      this.search = deepClone(this.tempSearch);
+      this.search = deepClone(tempSearch);
       // console.log('重置搜索完成', this.search)
     },
     /**
@@ -77,6 +78,6 @@ export default {
     },
     async _getList() {
       // requset data ....
-    }
-  }
-}
+    },
+  },
+};
