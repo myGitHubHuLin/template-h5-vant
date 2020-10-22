@@ -4,9 +4,7 @@
 
 目前架构还在测试、开发阶段。
 
-目前全力开发 typescript 的版本，js 的版本滞后更新。
-
-typescript 版本：查看typescript分支
+新项目开发建议使用vue3.0+ts分支
 
 ### 功能介绍
 
