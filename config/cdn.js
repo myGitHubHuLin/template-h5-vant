@@ -3,12 +3,13 @@
  * @listens https://github.com/shirotech/webpack-cdn-plugin
  */
 module.exports = {
-  prodUrl: "https://cdn.jsdelivr.net/npm/:name@:version/:path", // 按需自定义CDN服务器
+  // 按需自定义CDN服务器
+  prodUrl: "https://cdn.jsdelivr.net/npm/:name@:version/:path",
   modules: [
     {
       name: "vue",
       var: "Vue",
-      path: "dist/vue.runtime.min.js",
+      path: "dist/vue.min.js",
     },
     {
       name: "vue-router",
@@ -20,16 +21,11 @@ module.exports = {
       var: "Vuex",
       path: "dist/vuex.min.js",
     },
-    // {
-    //   name: 'vue-amap',
-    //   var: 'VueAMap',
-    //   path: 'dist/index.js'
-    // },
     {
       name: "vant",
       var: "vant",
       path: "lib/vant.min.js",
-      // style: "lib/index.css", // 由于需要自定义主题，这里注释CDN全局导入样式
+      style: "lib/index.css",
     },
   ],
 };

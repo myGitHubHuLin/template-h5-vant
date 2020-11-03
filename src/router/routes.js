@@ -1,93 +1,86 @@
-// routes
-import routes from "./modules";
+
+
 // layout
-import BottomBar from "@/views/components/BottomView/Index.vue";
-import HeaderBar from "@/views/components/HeaderView/Index.vue";
+import Fotter from "@/layout/Fotter/index.vue";
+import Header from "@/layout/Header/index.vue";
 
-// common
-const page404 = () => import("@/views/404.vue");
-const WxLogin = () => import("@/views/WxLogin.vue");
+//#region 自动导入模块路由
+const files = require.context("./modules", false, /\.js$/);
+const modules = [];
 
-// BottomBar
-const Home = () => import("@/views/pages/Home.vue");
-const PersonCenter = () => import("@/views/pages/PersonCenter.vue");
-const MapDemo = () => import("@/views/pages/MapDemo.vue");
+files.keys().forEach((key) => {
+  modules.push(files(key).default || files(key));
+});
+//#endregion
 
-// 注意
-// meta: {
-//   isOpen: true // 默认所有页面都是要权限的,配置isOpen:true 设置无需权限访问
-// }
-const routesArr = [
-    {
-        path: "*",
-        name: "page404",
+// pages
+const Home = () =>
+  import(/* webpackChunkName: "home" */ "@/views/home/home.vue");
+const Login = () => import("@/views/login/login.vue");
+const PersonCenter = () => import("@/views/person-center/person-center.vue");
+const MapDemo = () => import("@/views/map-demo/map-demo.vue");
+const Redirect = () => import("@/views/redirect/redirect.vue");
+
+const routes = [
+  {
+    path: "/login",
+    name: "login",
+    meta: {
+      title: "登录",
+      isOpen: true,
+    },
+    component: Login,
+  },
+  {
+    path: "/",
+    name: "fotter-main",
+    redirect: "/home",
+    component: Fotter,
+    children: [
+      {
+        path: "home",
+        name: "home",
         meta: {
-            title: "页面未找到",
-            isOpen: true,
+          title: "主页",
         },
-        component: page404,
-    },
-    {
-        path: "/",
-        name: "main",
-        redirect: "/home",
-        component: BottomBar,
-        children: [
-            {
-                path: "home",
-                name: "home",
-                meta: {
-                    title: "主页",
-                },
-                component: Home,
-            },
-            {
-                path: "MapDemo",
-                name: "MapDemo",
-                meta: {
-                    title: "地图",
-                    isOpen: true,
-                },
-                component: MapDemo,
-            },
-            {
-                path: "PersonCenter",
-                name: "PersonCenter",
-                meta: {
-                    title: "个人中心",
-                },
-                component: PersonCenter,
-            },
-        ],
-    },
-    {
-        path: "/login",
-        name: "login",
+        component: Home,
+      },
+      {
+        path: "map-demo",
+        name: "map-demo",
         meta: {
-            title: "登录",
-            isOpen: true,
+          title: "地图",
+          isOpen: true,
         },
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
-    },
-    {
-        path: "/WxLogin",
-        name: "WxLogin",
+        component: MapDemo,
+      },
+      {
+        path: "person-center",
+        name: "person-center",
         meta: {
-            title: "微信登录",
-            isOpen: true,
+          title: "个人中心",
         },
-        component: WxLogin,
+        component: PersonCenter,
+      },
+    ],
+  },
+  {
+    path: "/",
+    name: "header-main",
+    redirect: "/home",
+    component: Header,
+    children: [...modules],
+  },
+  {
+    path: "/redirect",
+    name: "redirect",
+    meta: {
+      title: "Redirect demo",
+      hideHeader: true,
+      isOpen: true,
     },
-    {
-        path: "/",
-        name: "page",
-        redirect: "/home",
-        component: HeaderBar,
-        children: [...routes],
-    },
+    component: Redirect,
+  },
 ];
-export default routesArr;
+
+export default routes;

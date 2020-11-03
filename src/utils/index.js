@@ -1,158 +1,318 @@
-import { setTimeout } from 'core-js'
-
 /**
- * 常用工具
+ * maybe js工具函数库
  * @author maybe
+ * @license https://gitee.com/null_639_5368/js-utils
  */
 
 /**
- * 存储localStorage
+ * 元素是否在视窗内
+ * @param {*} el
  */
-export const setStore = (name, content) => {
-  if (!name) return
-  if (typeof content !== 'string') {
-    content = JSON.stringify(content)
+export function isInViewPort(el) {
+  //获取屏幕高度
+  let windowTop =
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.body.clientHeight;
+  // 获取元素相对视窗的位置
+  const { top, bottom } = el.getBoundingClientRect();
+  if (bottom > 0 && top < windowTop) {
+    // 已经进入可视区
+    console.log("已经进入可视区");
+    return true;
+  } else {
+    // 未进入可视区
+    console.log("未进入可视区");
+    return false;
   }
-  window.localStorage.setItem(name, content)
 }
 /**
- * 获取localStorage
- */
-export const getStore = name => {
-  if (!name) return
-  return window.localStorage.getItem(name)
-}
-/**
- * 删除localStorage
- */
-export const removeStore = name => {
-  if (!name) return
-  window.localStorage.removeItem(name)
-}
-/**
- * 延迟加载方法
+ * 函数节流
  * @param {*} fn
- * @param {*} time
+ * @param {*} interval
+ * @param {*} isImmediate
  */
-export const submitTimeOut = (fn, time = 1000) => {
-  setTimeout(function () {
-    fn()
-  }, time)
+export function throttle(
+  fn,
+  wait = 500,
+  isImmediate = false
+) {
+  let flag = true;
+  let timer = null;
+  if (isImmediate) {
+    return function () {
+      if (flag) {
+        fn.apply(this, arguments);
+        flag = false;
+        timer = setTimeout(() => {
+          flag = true;
+        }, wait);
+      }
+    };
+  }
+  return function () {
+    if (flag) {
+      flag = false;
+      let timer = setTimeout((...rest) => {
+        fn.apply(this, rest);
+        flag = true;
+      }, wait);
+    }
+  };
 }
 /**
- * 创建script
- * @param url
- * @returns {Promise}
+ * @desc 函数防抖
+ * @param func 目标函数
+ * @param wait 延迟执行毫秒数
+ * @param immediate true - 立即执行， false - 延迟执行
  */
-export const createScript = url => {
-  let promise = new Promise(resolve => {
-    let scriptElement = document.createElement('script')
-    scriptElement.src = url
-    document.body.appendChild(scriptElement)
-    resolve('ok')
-  })
-  return promise
-}
+export function debounce(
+  func,
+  wait,
+  immediate
+) {
+  let timer;
+  return function () {
+    let context = this,
+      args = arguments;
 
-/**
- * 移除script标签
- * @param scriptElement script dom
- */
-export const removeScript = scriptElement => {
-  document.body.removeChild(scriptElement)
+    if (timer) clearTimeout(timer);
+    if (immediate) {
+      let callNow = !timer;
+      timer = setTimeout(() => {
+        timer = null;
+      }, wait);
+      if (callNow) func.apply(context, args);
+    } else {
+      timer = setTimeout(() => {
+        func.apply;
+      }, wait);
+    }
+  };
 }
 
 /**
  * 深拷贝
  * @param {*} obj
  */
-export const deepClone = obj => {
-  var result = Array.isArray(obj) ? [] : {}
-  for (var key in obj) {
+export function deepClone(obj) {
+  let result = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      if (typeof obj[key] === 'object') {
-        result[key] = deepClone(obj[key]) //递归复制
+      if (typeof obj[key] === "object") {
+        result[key] = deepClone(obj[key]); //递归复制
       } else {
-        result[key] = obj[key]
+        result[key] = obj[key];
       }
     }
   }
-  return result
+  return result;
 }
 /**
- * 函数节流
- * @param {*} fn
- * @param {*} interval
- */
-export const throttle = (fn, interval = 300) => {
-  let canRun = true
-  return function () {
-    if (!canRun) return
-    canRun = false
-    setTimeout(() => {
-      fn.apply(this, arguments)
-      canRun = true
-    }, interval)
-  }
-}
-/**
- * @desc  函数防抖---“立即执行版本” 和 “非立即执行版本” 的组合版本
- * @param  func 需要执行的函数
- * @param  wait 延迟执行时间（毫秒）
- * @param  immediate---true 表立即执行，false 表非立即执行
- **/
-export const debounce = (func, wait, immediate) => {
-  let timer
-  return function () {
-    let context = this
-    let args = arguments
-
-    if (timer) clearTimeout(timer)
-    if (immediate) {
-      var callNow = !timer
-      timer = setTimeout(() => {
-        timer = null
-      }, wait)
-      if (callNow) func.apply(context, args)
-    } else {
-      timer = setTimeout(function () {
-        func.apply(context, args)
-      }, wait)
+* 动态创建script
+* @param {string} src 脚本地址 
+* @param {string} id 唯一标识
+* @param {'defer' | 'async'} load 'defer' | 'async'  加载脚本的时机,默认是同步加载 
+* @example 
+* createScript(...).then().catch() 
+* ----or----
+* try {await  createScript(...)} catch(err){console.log(err)}
+* @returns {Promise<any>} Promise
+*/
+export function createScript(src, id, load) {
+  return new Promise((resolve, reject) => {
+    try {
+      let script = document.createElement("script");  //创建一个script标签
+      script.type = "text/javascript";
+      script.src = src;
+      if (id) script.id = id;
+      if (load) {
+        script.setAttribute('load', load);
+      }
+      document.getElementsByTagName('head')[0].appendChild(script);
+      console.log(`script id：${id} 加载中...`)
+      script.onload = function () {
+        console.log(`script id：${id} 加载完成`)
+        resolve();
+      }
+    } catch (error) {
+      reject(error);
     }
-  }
+  })
 }
 /**
- * 数字转整数 如 100000 转为10万
- * @param {需要转化的数} num
- * @param {需要保留的小数位数} point
+* 删除脚本
+* @param {HTMLElement} dom script元素 
+* @returns {Promise<any>} Promise
+*/
+export function removeScript(dom) {
+  return new Promise((resolve, reject) => {
+    try {
+      if (!dom) {
+        throw new Error('请提供有效的script dom')
+      }
+      document.getElementsByTagName('head')[0].removeChild(dom);
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+
+/**
+ * 存储localStorage
+ * @param name
+ * @param content
  */
-export const tranNumber = (num, point) => {
-  let numStr = num.toString()
-  // 十万以内直接返回
-  if (numStr.length < 6) {
-    return numStr
+export const setStore = (name, content) => {
+  if (!name) return;
+  if (typeof content !== "string") {
+    content = JSON.stringify(content);
   }
-  //大于8位数是亿
-  else if (numStr.length > 8) {
-    let decimal = numStr.substring(numStr.length - 8, numStr.length - 8 + point)
-    return parseFloat(parseInt(num / 100000000) + '.' + decimal) + '亿'
-  }
-  //大于6位数是十万 (以10W分割 10W以下全部显示)
-  else if (numStr.length > 5) {
-    let decimal = numStr.substring(numStr.length - 4, numStr.length - 4 + point)
-    return parseFloat(parseInt(num / 10000) + '.' + decimal) + '万'
-  }
-}
+  window.localStorage.setItem(name, content);
+};
 /**
- * 数组插入到formdata
- * @description 该方法会改变原formdata
+ * 获取localStorage
+ * @param name
+ * @returns {string}
+ */
+export const getStore = (name) => {
+  if (!name) return;
+  return window.localStorage.getItem(name);
+};
+/**
+ * 删除localStorage
+ * @param name
+ */
+export const removeStore = (name) => {
+  if (!name) return;
+  window.localStorage.removeItem(name);
+};
+
+/**
+ * 延迟加载方法
+ * @param {Function} fn
+ * @param {number} time
+ */
+export const submitTimeOut = (fn, time) => {
+  setTimeout(function () {
+    fn();
+  }, time);
+};
+/**
+ * 数组插入到Formdata
+ * @example 1.在上传多张图片的时候会用到
+ * @description 此方法会改变原数组,console.log(formData)是看不到效果的必须在请求体里面才能看到
  * @param {FormData} formData 源formdata
  * @param {string} key 数组key值
  * @param {Array} arr 数组
+ * @returns {void}
  */
-export const formatArrToFormData = (formData, key, arr) => {
+export const formatArrToFormData = (
+  formData,
+  key,
+  arr
+) => {
   arr.forEach((file, index) => {
     formData.append(`${key}[${index}]`, file);
-    // console.log(formData.get(`${key}[${index}]`));
   });
 };
+
+/**
+* 判断是否移动设备访问
+*/
+export function isMobileUserAgent() {
+  return /iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i.test(
+    window.navigator.userAgent.toLowerCase()
+  );
+}
+
+/**
+ * 获取页面高度
+ */
+export function getPageHeight() {
+  var g = document,
+    a = g.body,
+    f = g.documentElement,
+    d = g.compatMode == "BackCompat" ? a : g.documentElement;
+  return Math.max(f.scrollHeight, a.scrollHeight, d.clientHeight);
+}
+/**
+ * 获取页面宽度
+ */
+export function getPageWidth() {
+  var g = document,
+    a = g.body,
+    f = g.documentElement,
+    d = g.compatMode == "BackCompat" ? a : g.documentElement;
+  return Math.max(f.scrollWidth, a.scrollWidth, d.clientWidth);
+}
+
+/**
+ * 判断是否是微信内置浏览器环境
+ */
+export const isWeixin = () => {
+  const ua = navigator.userAgent.toLowerCase();
+  const uaMatch = ua.match(/MicroMessenger/i);
+  if (uaMatch == "micromessenger") {
+    return true;
+  } else {
+    return false;
+  }
+};
+/**
+ * 判断运行环境是安卓还是IOS
+ * @returns  {boolean} true => 安卓 false => IOS
+ */
+export function isAndroid() {
+  let u = navigator.userAgent;
+  let isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
+  // let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  return isAndroid ? true : false;
+}
+
+/**
+ * 判断是否在元素外触发事件
+ * @param event  事件源
+ * @param el 元素
+ * @returns {*} true 在元素外 false 在元素内
+ */
+export function isOutEl(event, el) {
+  let path = getEventPath(event);
+  return !Array.from(path).includes(el);
+}
+
+/**
+ * 获取事件冒泡路径
+ * @description 兼容ie11,edge,chrome,firefox,safari
+ * @param evt
+ * @returns {*}
+ */
+export function getEventPath(evt) {
+  const path = (evt.composedPath && evt.composedPath()) || evt.path,
+    target = evt.target;
+  if (path != null) {
+    return path.indexOf(window) < 0 ? path.concat(window) : path;
+  }
+  if (target === window) {
+    return [window];
+  }
+  const getParents = (node, memo) => {
+    memo = memo || [];
+    const parentNode = node.parentNode;
+
+    if (!parentNode) {
+      return memo;
+    } else {
+      return getParents(parentNode, memo.concat(parentNode));
+    }
+  };
+  return [target].concat(getParents(target), window);
+}
+/**
+ * 判断对象是否为空对象({})
+ * @param event  事件源
+ */
+export function isEmptyObj(obj) {
+  return obj ? Object.keys(obj).length == 0 : false;
+}

@@ -1,24 +1,20 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div class="container">
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-// import inobounce from '@/utils/inobounce'
+<script >
 export default {
-  created() {},
-  mounted() {
-    // inobounce.enable();
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
-<style lang="scss" >
+
+<style lang="scss">
 html,
 body {
   height: 100%;
   width: 100%;
-  overflow-y: auto;
 }
 </style>
-

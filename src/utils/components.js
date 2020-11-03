@@ -1,11 +1,11 @@
-import Vue from 'vue'
+import SvgIcon from "@/components/SvgIcon.vue";
+import MPanel from "@/components/MPanel.vue";
+import BlockLoading from '@/components/BlockLoading.vue'
 
-import HeaderBar from '@/components/Layout/HeaderBar.vue'
-import SvgIcon from '@/components/SvgIcon.vue'
-import MPanel from '@/components/MPanel.vue'
-import MLoading from '@/components/MLoading.vue'
-
-Vue.component('header-bar', HeaderBar)
-Vue.component('svg-icon', SvgIcon)
-Vue.component('MPanel', MPanel)
-Vue.component('MLoading', MLoading)
+export default {
+    install: (app, options) => {
+        app.component("svg-icon", SvgIcon);
+        app.component("MPanel", MPanel);
+        app.component('BlockLoading', BlockLoading)
+    },
+};

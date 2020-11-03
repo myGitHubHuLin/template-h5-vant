@@ -1,8 +1,12 @@
+
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import routeList from "./routes";
 
 // routes
-import routes from './routes'
+const routes = [...routeList];
+
 
 
 Vue.use(VueRouter)
