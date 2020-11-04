@@ -3,8 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+
+
 // 初始化样式
 import "@/assets/css/reset.css";
+
+// rem 适配js
+// import 'amfe-flexible'
 
 // 设置html根字体大小
 import "@/assets/css/font-html.css";
