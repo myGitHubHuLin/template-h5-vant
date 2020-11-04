@@ -1,8 +1,8 @@
 
 
 // layout
-import Fotter from "@/layout/Fotter/index.vue";
-import Header from "@/layout/Header/index.vue";
+import Fotter from "@/layout/fotter/index.vue";
+import Header from "@/layout/header/index.vue";
 
 //#region 自动导入模块路由
 const files = require.context("./modules", false, /\.js$/);
