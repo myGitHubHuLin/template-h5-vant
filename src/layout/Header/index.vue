@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import HeaderBar from "@/components/Layout/HeaderBar.vue";
+import HeaderBar from "./HeaderBar.vue";
 export default {
   props: {},
   components: {

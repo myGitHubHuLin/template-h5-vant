@@ -8,7 +8,7 @@
 </template>
 
 <script >
-import FooterBar from "@/components/Layout/FooterBar.vue";
+import FooterBar from "./FooterBar.vue";
 export default {
   props: {},
   components: {
@@ -18,9 +18,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .footer-view在postcss-px-to-viewport 中配置了不会转换px
 .footer-view {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 100px);
   overflow: auto;
 }
 </style>
