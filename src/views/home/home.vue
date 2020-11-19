@@ -4,7 +4,7 @@
       <h2 class="title">🔥vue-vant-base🔥</h2>
       <p style="text-align: center">vue+vant 移动端快速开发架构(Vue2.0)</p>
       <div>
-        <img src="@/assets/logo.png" width="150" height="150" alt />
+        <img src="@/assets/images/logo.png" width="150" height="150" alt />
       </div>
       <m-panel title="块级加载组件">
         <van-row type="flex" justify="center">

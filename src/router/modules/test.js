@@ -7,8 +7,8 @@ const routes = {
   component: MidRouterView,
   children: [
     {
-      path: "test-jssdk",
-      name: "test-jssdk",
+      path: "testJssdk",
+      name: "testJssdk",
       meta: {
         title: "jssdk demo",
       },

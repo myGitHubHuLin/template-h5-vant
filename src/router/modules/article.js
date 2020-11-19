@@ -1,26 +1,24 @@
 
 import MidRouterView from "@/components/MidRouterView.vue";
 
-const List = () => import("@/views/article/list.vue");
-
 const routes = {
   path: "/article",
-  redirect: "/article/article",
+  redirect: "/article/index",
   component: MidRouterView,
   children: [
     {
-      path: "article",
-      name: "article",
-      component: () => import("@/views/article/article.vue"),
+      path: "index",
+      name: "articleIndex",
+      component: () => import("@/views/article/index.vue")
     },
     {
       path: "list",
-      name: "list",
+      name: "articleList",
       meta: {
         title: "列表 demo",
         hideHeader: false,
       },
-      component: List,
+      component: () => import("@/views/article/list.vue"),
     },
   ],
 };

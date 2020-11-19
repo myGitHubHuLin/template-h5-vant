@@ -4,10 +4,9 @@
  */
 import axios from "axios";
 import { Toast } from "vant";
-// import store from '@/store'
 import { getToken } from "@/utils/auth";
 import router from "@/router";
-// import configSite from '_conf' // 站点配置
+import configEnv from '_conf'
 
 /**
  * 请求失败后的错误统一处理
@@ -25,14 +24,13 @@ const handleError = (code) => {
       break;
   }
 };
-
+console.log(configEnv)
 // create an axios instance
 const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
-  baseURL: process.env.VUE_APP_API_PREFIX, // .env中配置的api前缀
+  baseURL: configEnv.baseApi, // .env中配置的api前缀
   timeout: 5000, // request timeout
 });
-console.log(process.env.VUE_APP_API_PREFIX);
 /**
  * 请求拦截器
  * 每次请求前，如果存在token则在请求头中携带token

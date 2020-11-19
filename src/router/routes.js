@@ -13,14 +13,6 @@ files.keys().forEach((key) => {
 });
 //#endregion
 
-// pages
-const Home = () =>
-  import(/* webpackChunkName: "home" */ "@/views/home/home.vue");
-const Login = () => import("@/views/login/login.vue");
-const PersonCenter = () => import("@/views/person-center/person-center.vue");
-const MapDemo = () => import("@/views/map-demo/map-demo.vue");
-const Redirect = () => import("@/views/redirect/redirect.vue");
-
 const routes = [
   {
     path: "/login",
@@ -29,11 +21,11 @@ const routes = [
       title: "登录",
       isOpen: true,
     },
-    component: Login,
+    component: () => import("@/views/login/index.vue"),
   },
   {
     path: "/",
-    name: "fotter-main",
+    name: "fotterMain",
     redirect: "/home",
     component: Fotter,
     children: [
@@ -43,30 +35,30 @@ const routes = [
         meta: {
           title: "主页",
         },
-        component: Home,
+        component: import(/* webpackChunkName: "home" */ "@/views/home/home.vue"),
       },
       {
-        path: "map-demo",
-        name: "map-demo",
+        path: "mapDemo",
+        name: "mapDemo",
         meta: {
           title: "地图",
           isOpen: true,
         },
-        component: MapDemo,
+        component: () => import("@/views/mapDemo/index.vue"),
       },
       {
-        path: "person-center",
-        name: "person-center",
+        path: "personCenter",
+        name: "personCenter",
         meta: {
           title: "个人中心",
         },
-        component: PersonCenter,
+        component: () => import("@/views/personCenter/index.vue"),
       },
     ],
   },
   {
     path: "/",
-    name: "header-main",
+    name: "headerMain",
     redirect: "/home",
     component: Header,
     children: [...modules],
@@ -79,7 +71,7 @@ const routes = [
       hideHeader: true,
       isOpen: true,
     },
-    component: Redirect,
+    component: () => import("@/views/redirect/index.vue"),
   },
 ];
 

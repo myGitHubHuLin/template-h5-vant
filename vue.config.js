@@ -1,16 +1,23 @@
-/* eslint-disable */
+/**
+ * vue-cli 打包配置文件
+ * vue.config.js
+ */
 const path = require("path");
 // gzip压缩
 const CompressionPlugin = require("compression-webpack-plugin");
 // webpack cdn 插件
 const WebpackCdnPlugin = require("webpack-cdn-plugin");
 
-// 处理路径
-function resolve(dir) {
-  return path.join(__dirname, dir);
+// 构建工具函数
+const utils = {
+  // 处理路径
+  resolve(dir) {
+    return path.join(__dirname, dir);
+  }
 }
-// 网站配置
-const configSite = require("./config/index.js");
+
+// 环境配置
+const configEnv = require("./config");
 
 // CDN配置
 const configCdn = require("./config/cdn.js");
@@ -18,11 +25,11 @@ const configCdn = require("./config/cdn.js");
 // 判断是否是生产环境
 let isProd = process.env.NODE_ENV == "production" ? true : false;
 
-module.exports = {
+const config = {
   // eslint检测 默认是开启的
   lintOnSave: true,
   // 资源全局路径前缀
-  publicPath: process.env.VUE_APP_PUBLIC_PATH,
+  publicPath: configEnv.publicPath,
   //静态资源目录(js,css,img,fonts)这些文件都可以写里面
   assetsDir: "assets",
   // 打包时不生成.map文件
@@ -39,17 +46,16 @@ module.exports = {
     disableHostCheck: true,
     // 设置代理
     proxy: {
-      [process.env.VUE_APP_API_PREFIX]: {
+      [configEnv.baseApi]: {
         // 目标 API 地址
         // 开发环境
-        // target: "http://127.0.0.1:7001/api", // 后端测试api地址
-        target: "https://www.fastmock.site/mock/4065436981794d02775c54b5d2e22e74/common-test/api", // 记得删除这行
+        target: configEnv.target,
         // 如果要代理 websockets
         ws: false,
         // 将主机标头的原点更改为目标URL(设置跨域)
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "",
+          [`^${configEnv.baseApi}`]: "",
         },
       },
     },
@@ -84,18 +90,18 @@ module.exports = {
     config.plugins.delete("prefetch"); // TODO: need test
     // 设置别名
     config.resolve.alias
-      .set("@", resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))
-      .set("_c", resolve("src/components"))
-      .set("_conf", resolve("config"));
+      .set("@", utils.resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set("_c", utils.resolve("src/components"))
+      .set("_conf", utils.resolve("config"));
     // 设置 svg-sprite-loader
     config.module
       .rule("svg")
-      .exclude.add(resolve("src/icons"))
+      .exclude.add(utils.resolve("src/icons"))
       .end();
     config.module
       .rule("icons")
       .test(/\.svg$/)
-      .include.add(resolve("src/icons"))
+      .include.add(utils.resolve("src/icons"))
       .end()
       .use("svg-sprite-loader")
       .loader("svg-sprite-loader")
@@ -113,7 +119,7 @@ module.exports = {
             // 'text-color': '#111',
             // 'border-color': '#eee',
             // 或者可以通过 less 文件覆盖（文件路径为绝对路径
-            hack: `true; @import "@/assets/css/theme-var.less";`,
+            hack: `true; @import "@/assets/css/theme_var.less";`,
           },
         },
       },
@@ -126,3 +132,7 @@ module.exports = {
     },
   },
 };
+// 打印webpack配置信息
+// console.log(JSON.stringify(config))
+
+module.exports = config;

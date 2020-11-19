@@ -10,7 +10,6 @@ import $api from "@/api/index";
 import { getUserInfo } from "@/utils/auth";
 import * as mt from "./mutations-types";
 
-
 export default {
   namespaced: true,
   state: {
