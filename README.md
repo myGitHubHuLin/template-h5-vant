@@ -18,6 +18,9 @@
 * 支持 vant 组件库的按需加载
 * 支持 svg 雪碧图
 * 本项目已经实现vant-ui自带组件库的自适应, 正常开发直接写750px的设计稿像素
+### 代码风格
+
+[文档](https://gitee.com/null_639_5368/vue-vant-base/blob/master/code_style.md)
 
 ### 安装
 
