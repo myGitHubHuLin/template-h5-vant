@@ -52,21 +52,20 @@ npm run build 生产模式
 
 
 ```
-// .env.development
+// config/env.development.js
 
 // http统一api请求前缀（开发模式下做跨域处理,一般清楚下不用做特殊处理）
-VUE_APP_API_PREFIX='/api'
+baseApi='/api'
 
 ```
 
 
 ```
-// .env.production
+// config/env.production.js
 
 // 这里修改为网站发布的目录如'./xxx',如果在根目录修改为'/' （如果这里配置不当会找不到路径导致白屏）
-VUE_APP_PUBLIC_PATH='/vue-vant-base'
+publicPath='/vue-vant-base'
 
 // http统一api请求前缀（生产模式下填后端api地址）
-VUE_APP_API_PREFIX='http://wwww.xxx.com/api'
+baseApi='http://wwww.xxx.com/api'
 ```
-
