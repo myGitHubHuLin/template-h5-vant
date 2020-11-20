@@ -35,7 +35,7 @@ const routes = [
         meta: {
           title: "主页",
         },
-        component: import(/* webpackChunkName: "home" */ "@/views/home/home.vue"),
+        component: () => import("@/views/home/index.vue"),
       },
       {
         path: "mapDemo",

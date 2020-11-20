@@ -7,7 +7,7 @@ import routeList from "./routes";
 // routes
 const routes = [...routeList];
 
-
+console.log(routes)
 
 Vue.use(VueRouter)
 
