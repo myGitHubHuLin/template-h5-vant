@@ -50,10 +50,15 @@ export default {
       if (this.finished) return;
       this.loading = true;
       this.page++;
-      await this._getList();
+       // 防止加载错误后一直显示加载中...
+      try {
+        await this._getList();
+      } catch (error) {
+        console.error(error)
+      }
       this.loading = false;
       // 判断是否全部加载完成
-      if (this.list.length == this.total) {
+      if (this.list.length >= this.total) {
         this.finished = true;
       }
     },
