@@ -12,6 +12,7 @@
 <script>
 import { Tabbar, TabbarItem } from "vant";
 
+// ..
 export default {
   name: "FooterTabbar",
   components: {

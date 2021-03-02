@@ -1,7 +1,7 @@
 
 
 // layout
-import Fotter from "@/layout/fotter/index.vue";
+import Footer from "@/layout/footer/index.vue";
 import Header from "@/layout/header/index.vue";
 
 //#region 自动导入模块路由
@@ -27,7 +27,7 @@ const routes = [
     path: "/",
     name: "fotterMain",
     redirect: "/home",
-    component: Fotter,
+    component: Footer,
     children: [
       {
         path: "home",
