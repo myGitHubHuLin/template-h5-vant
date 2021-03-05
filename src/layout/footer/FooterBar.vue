@@ -1,6 +1,6 @@
 <template>
   <van-tabbar route v-model="active" :safe-area-inset-bottom="true">
-    <van-tabbar-item icon="wap-home" replace to="/">首页</van-tabbar-item>
+    <van-tabbar-item icon="wap-home" replace to="/home">首页</van-tabbar-item>
     <van-tabbar-item icon="location" replace to="/mapDemo"
       >地图</van-tabbar-item
     >
